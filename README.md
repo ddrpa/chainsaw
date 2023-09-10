@@ -11,7 +11,7 @@ usage: chainsaw [-h|--help] [--not-before <integer>] [--not-after <integer>]
                 [-c|--chunk-size <integer>] -f|--file "<value>" [-o|--output
                 "<value>"] [--dry-run]
 
-                Cut large log file into small pieces, version 0.1.0
+                Cut large log file into small pieces, version 1.0.0
 
 Arguments:
 
