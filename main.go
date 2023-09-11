@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	Version = "1.0.0"
+	Version = "1.0.1"
 )
 
 var waitGroup sync.WaitGroup
@@ -84,7 +84,7 @@ func main() {
 	//datetimePattern := regexp.MustCompile(`^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.[0-9]{3}`)
 	datePattern := regexp.MustCompile(`^\d{4}-\d{2}-\d{2}`)
 	var cursorTimestamp string
-	logBuffer := make([]string, 0)
+	logBuffer := make([]string, 0, *chunkSize)
 
 	file, _ := os.Open(*logfile)
 	defer func(file *os.File) {
@@ -155,14 +155,14 @@ func main() {
 				waitGroup.Add(1)
 				go saveLog(logBuffer, cursorTimestamp, true, chunkCounter)
 				chunkCounter += 1
-				logBuffer = make([]string, 0)
+				logBuffer = make([]string, 0, *chunkSize)
 			}
 		} else {
 			// 不匹配时间戳游标
 			waitGroup.Add(1)
 			go saveLog(logBuffer, cursorTimestamp, chunkCounter != 0, chunkCounter)
 			chunkCounter = 0
-			logBuffer = make([]string, 0)
+			logBuffer = make([]string, 0, *chunkSize)
 			cursorTimestamp = messageTimestamp
 		}
 		logBuffer = append(logBuffer, line)
