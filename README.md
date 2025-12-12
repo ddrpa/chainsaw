@@ -1,3 +1,5 @@
+Use (HL)[https://github.com/pamburus/hl?tab=readme-ov-file#performing-complex-queries]
+
 # Chainsaw - Cut large log file into small pieces
 
 chainsaw 可以帮助你把数个 GB 大小的单一日志文件按日期切分，以便充分释放一些文本搜索工具的多线程能力。
